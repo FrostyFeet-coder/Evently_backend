@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "evently_user",
+    "password": "your_secure_password",
+    "database": "s1",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "evently_user",
+    "password": "your_secure_password",
+    "database": "s1",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "evently_user",
+    "password": "your_secure_password",
+    "database": "s1",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}
