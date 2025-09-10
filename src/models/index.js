@@ -1,13 +1,13 @@
 const { Sequelize } = require('sequelize');
 const { sequelize } = require('../config/database');
 
-// Import model definitions (these are functions)
+// Import model definitions
 const UserModel = require('./User');
 const EventModel = require('./Event');
 const BookingModel = require('./Booking');
 const WaitlistModel = require('./Waitlist');
 
-// Initialize models by calling the functions
+// Initialize models
 const User = UserModel(sequelize, Sequelize.DataTypes);
 const Event = EventModel(sequelize, Sequelize.DataTypes);
 const Booking = BookingModel(sequelize, Sequelize.DataTypes);
@@ -28,7 +28,7 @@ Booking.belongsTo(Event, { foreignKey: 'eventId', as: 'event' });
 Waitlist.belongsTo(User, { foreignKey: 'userId', as: 'user' });
 Waitlist.belongsTo(Event, { foreignKey: 'eventId', as: 'event' });
 
-// Export the initialized models
+// Export models
 module.exports = {
   User,
   Event,

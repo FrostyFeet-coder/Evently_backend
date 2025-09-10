@@ -95,7 +95,7 @@ class WaitlistService {
     return {
       position: entry.position,
       ticketsRequested: entry.ticketsRequested,
-      estimatedWaitTime: entry.position * 5, // 5 minutes per position
+      estimatedWaitTime: entry.position * 5, 
       joinedAt: entry.createdAt
     };
   }

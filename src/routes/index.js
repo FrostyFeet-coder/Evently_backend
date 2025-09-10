@@ -4,7 +4,7 @@ const eventRoutes = require('./eventRoutes');
 const bookingRoutes = require('./bookingRoutes');
 const waitlistRoutes = require('./waitlistRoutes');
 const analyticsRoutes = require('./analyticsRoutes');
-const adminRoutes = require('./adminRoutes');
+const adminRoutes = require('./adminRoutes'); // Add this line
 
 const router = express.Router();
 
@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
       bookings: '/bookings',
       waitlist: '/waitlist',
       analytics: '/analytics',
-      admin: '/admin'
+      admin: '/admin' // Add this line
     }
   });
 });
@@ -31,9 +31,6 @@ router.use('/events', eventRoutes);
 router.use('/bookings', bookingRoutes);
 router.use('/waitlist', waitlistRoutes);
 router.use('/analytics', analyticsRoutes);
-router.use('/admin', adminRoutes);
-router.use('/seats', require('./seatRoutes'));
-router.use('/notifications', require('./notificationRoutes'));  
-router.use('/tickets', require('./ticketRoutes'));
+router.use('/admin', adminRoutes); // Add this line
 
 module.exports = router;

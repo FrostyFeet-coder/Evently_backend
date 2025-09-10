@@ -9,7 +9,7 @@ class WaitlistController {
       const { eventId } = req.body;
       const userId = req.user.id;
 
-      console.log('Adding user to waitlist:', { userId, eventId });
+      console.log(' Adding user to waitlist:', { userId, eventId });
 
       // Validate event exists
       const event = await Event.findByPk(eventId);
@@ -66,7 +66,7 @@ class WaitlistController {
 
         await transaction.commit();
 
-        console.log(' ser added to waitlist:', { userId, eventId, position });
+        console.log(' User added to waitlist:', { userId, eventId, position });
 
         res.status(201).json({
           success: true,
@@ -88,7 +88,7 @@ class WaitlistController {
       }
 
     } catch (error) {
-      console.error('Waitlist join error:', error);
+      console.error(' Waitlist join error:', error);
       next(error);
     }
   }
@@ -136,7 +136,7 @@ class WaitlistController {
 
         await transaction.commit();
 
-        console.log('User removed from waitlist:', { userId, eventId, removedPosition });
+        console.log(' User removed from waitlist:', { userId, eventId, removedPosition });
 
         res.json({
           success: true,
@@ -149,7 +149,7 @@ class WaitlistController {
       }
 
     } catch (error) {
-      console.error('Waitlist leave error:', error);
+      console.error(' Waitlist leave error:', error);
       next(error);
     }
   }
@@ -159,7 +159,7 @@ class WaitlistController {
       const { eventId } = req.params;
       const userId = req.user.id;
 
-      console.log('Getting waitlist position:', { userId, eventId });
+      console.log(' Getting waitlist position:', { userId, eventId });
 
       const entry = await Waitlist.findOne({
         where: { userId, eventId, status: 'WAITING' },
@@ -189,7 +189,7 @@ class WaitlistController {
       });
 
     } catch (error) {
-      console.error('Get waitlist position error:', error);
+      console.error(' Get waitlist position error:', error);
       next(error);
     }
   }
@@ -240,7 +240,7 @@ class WaitlistController {
       });
 
     } catch (error) {
-      console.error('Get event waitlist error:', error);
+      console.error(' Get event waitlist error:', error);
       next(error);
     }
   }

@@ -13,7 +13,7 @@ const getDashboardStats = async (req, res, next) => {
       });
     }
 
-    console.log('Getting dashboard stats...');
+    console.log(' Getting dashboard stats...');
 
     const [
       totalUsers,
@@ -31,7 +31,7 @@ const getDashboardStats = async (req, res, next) => {
       Booking.count({ where: { createdAt: { [Op.gte]: new Date(Date.now() - 24 * 60 * 60 * 1000) } } })
     ]);
 
-    console.log('Basic stats collected:', { totalUsers, totalEvents, totalBookings });
+    console.log(' Basic stats collected:', { totalUsers, totalEvents, totalBookings });
 
     // Get popular events with a simpler approach
     const popularEvents = await sequelize.query(`
@@ -51,7 +51,7 @@ const getDashboardStats = async (req, res, next) => {
       type: sequelize.QueryTypes.SELECT
     });
 
-    console.log('Popular events:', popularEvents.length);
+    console.log(' Popular events:', popularEvents.length);
 
     // Get recent events
     const recentEvents = await Event.findAll({
@@ -78,7 +78,7 @@ const getDashboardStats = async (req, res, next) => {
     });
 
   } catch (error) {
-    console.error('Dashboard stats error:', error);
+    console.error(' Dashboard stats error:', error);
     logger.error('Dashboard stats error:', error);
     next(error);
   }
@@ -95,7 +95,7 @@ const getBookingTrends = async (req, res, next) => {
 
     const { startDate, endDate } = req.query;
 
-    console.log('Getting booking trends:', { startDate, endDate });
+    console.log(' Getting booking trends:', { startDate, endDate });
 
     let dateFilter = '';
     const replacements = {};
@@ -140,7 +140,7 @@ const getBookingTrends = async (req, res, next) => {
       type: sequelize.QueryTypes.SELECT
     });
 
-    console.log('Trends collected:', trends.length, 'days');
+    console.log(' Trends collected:', trends.length, 'days');
 
     res.json({
       success: true,
@@ -156,7 +156,7 @@ const getBookingTrends = async (req, res, next) => {
     });
 
   } catch (error) {
-    console.error('Booking trends error:', error);
+    console.error(' Booking trends error:', error);
     logger.error('Booking trends error:', error);
     next(error);
   }
