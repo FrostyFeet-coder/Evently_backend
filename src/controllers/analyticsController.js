@@ -26,7 +26,7 @@ const getDashboardStats = async (req, res, next) => {
       User.count(),
       Event.count(),
       Booking.count(),
-      Booking.sum('totalAmount', { where: { status: ['CONFIRMED', 'PENDING'] } }),
+      Booking.sum('totalAmount', { where: { status: ['CONFIRMED', 'PAYMENT_PENDING'] } }),
       Event.count({ where: { status: 'PUBLISHED' } }),
       Booking.count({ where: { createdAt: { [Op.gte]: new Date(Date.now() - 24 * 60 * 60 * 1000) } } })
     ]);
