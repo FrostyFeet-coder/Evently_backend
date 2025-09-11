@@ -132,7 +132,7 @@ const getBookingTrends = async (req, res, next) => {
       SELECT 
         status,
         COUNT(*)::integer as count
-      FROM "Bookings"
+      FROM "bookings"
       ${dateFilter ? dateFilter.replace('WHERE', 'WHERE') : ''}
       GROUP BY status
     `, {
