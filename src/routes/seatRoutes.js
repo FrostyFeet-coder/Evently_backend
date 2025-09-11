@@ -11,8 +11,8 @@ const { authenticateToken } = require('../middleware/auth');
 const router = express.Router();
 
 // Public routes
-router.get('/:eventId', getSeatMap);
 router.get('/:eventId/available', getAvailableSeats);
+router.get('/:eventId', getSeatMap);
 
 // Protected routes
 router.use(authenticateToken);

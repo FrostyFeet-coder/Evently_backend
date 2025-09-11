@@ -67,6 +67,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+  
 
   Event.prototype.isBookable = function() {
     return this.status === 'PUBLISHED' 

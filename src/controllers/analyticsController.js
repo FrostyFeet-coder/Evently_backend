@@ -42,7 +42,7 @@ const getDashboardStats = async (req, res, next) => {
         e."dateTime",
         COUNT(b.id) as "bookingCount"
       FROM "Events" e
-      LEFT JOIN "Bookings" b ON e.id = b."eventId" 
+      LEFT JOIN "bookings" b ON e.id = b."eventId" 
       WHERE e.status = 'PUBLISHED'
       GROUP BY e.id, e.name, e.venue, e."dateTime"
       ORDER BY COUNT(b.id) DESC
@@ -117,7 +117,7 @@ const getBookingTrends = async (req, res, next) => {
         DATE(b."createdAt") as date,
         COUNT(b.id)::integer as bookings,
         COALESCE(SUM(b."totalAmount"), 0)::float as revenue
-      FROM "Bookings" b
+      FROM "bookings" b
       ${dateFilter}
       GROUP BY DATE(b."createdAt")
       ORDER BY DATE(b."createdAt") ASC
@@ -185,9 +185,9 @@ const getEventAnalytics = async (req, res, next) => {
         e.status,
         COUNT(b.id)::integer as "totalBookings",
         COALESCE(SUM(b."totalAmount"), 0)::float as revenue,
-        ROUND((COUNT(b.id)::float / e.capacity * 100), 2) as "utilizationPercent"
+            (COUNT(b.id)::float / e.capacity * 100) as "utilizationPercent"
       FROM "Events" e
-      LEFT JOIN "Bookings" b ON e.id = b."eventId" AND b.status IN ('PENDING', 'CONFIRMED')
+      LEFT JOIN"bookings" b ON e.id = b."eventId" AND b.status IN ('PENDING', 'CONFIRMED')
       GROUP BY e.id, e.name, e.venue, e."dateTime", e.capacity, e."availableSeats", e.price, e.status
       ORDER BY "totalBookings" DESC
       LIMIT 20

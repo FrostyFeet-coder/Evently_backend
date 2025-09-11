@@ -59,7 +59,29 @@ const schemas = {
   createBooking: Joi.object({
     eventId: Joi.string().uuid().required(),
     ticketCount: Joi.number().min(1).max(10).required()
-  })
+  }),
+
+  selectSeats: Joi.object({
+    eventId: Joi.string().uuid().required(),
+    seatNumbers: Joi.array().items(Joi.string().required()).min(1).required(),
+    seatSection: Joi.string().required(),   // Seat section is required
+    seatRow: Joi.string().required(),       // Seat row is required
+    bookingType: Joi.string().optional()
+  }),
+  
+  confirmBooking: Joi.object({
+  paymentMethod: Joi.string().valid('CARD', 'UPI', 'WALLET').required(),
+  paymentDetails: Joi.object({
+    cardNumber: Joi.string().optional(),   // required if CARD
+    expiry: Joi.string().optional(),
+    cvv: Joi.string().optional(),
+    name: Joi.string().optional(),
+    upiId: Joi.string().optional()         // required if UPI
+  }).required()
+}) , 
+
+
+
 };
 
 module.exports = { validate, schemas };

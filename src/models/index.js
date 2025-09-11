@@ -28,6 +28,7 @@ Booking.belongsTo(Event, { foreignKey: 'eventId', as: 'event' });
 Waitlist.belongsTo(User, { foreignKey: 'userId', as: 'user' });
 Waitlist.belongsTo(Event, { foreignKey: 'eventId', as: 'event' });
 
+
 // Export models
 module.exports = {
   User,

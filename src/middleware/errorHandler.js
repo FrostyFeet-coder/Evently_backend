@@ -1,3 +1,4 @@
+const { create } = require('qrcode');
 const logger = require('../utils/logger');
 
 class AppError extends Error {
@@ -8,6 +9,20 @@ class AppError extends Error {
     Error.captureStackTrace(this, this.constructor);
   }
 }
+// src/middleware/errorHandler.js
+function asyncHandler(fn) {
+  return (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
+}
+
+
+const createError = {
+  badRequest: (message) => new AppError(message, 400),
+  unauthorized: (message) => new AppError(message, 401),
+  notFound: (message) => new AppError(message, 404),
+  gone: (message) => new AppError(message, 410),
+  internal: (message) => new AppError(message, 500),
+};
+
 
 const errorHandler = (err, req, res, next) => {
   let { statusCode = 500, message } = err;
@@ -39,5 +54,5 @@ const errorHandler = (err, req, res, next) => {
   });
 };
 
-module.exports = errorHandler;
+module.exports = {errorHandler , asyncHandler, createError};
 module.exports.AppError = AppError;

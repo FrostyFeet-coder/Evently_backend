@@ -7,7 +7,7 @@ const rateLimit = require('express-rate-limit');
 require('express-async-errors');
 
 const routes = require('./routes');
-const errorHandler = require('./middleware/errorHandler');
+const { errorHandler } = require('./middleware/errorHandler');
 const logger = require('./utils/logger');
 
 const app = express();

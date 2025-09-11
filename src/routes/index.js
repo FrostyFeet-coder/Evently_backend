@@ -5,7 +5,7 @@ const bookingRoutes = require('./bookingRoutes');
 const waitlistRoutes = require('./waitlistRoutes');
 const analyticsRoutes = require('./analyticsRoutes');
 const adminRoutes = require('./adminRoutes'); // Add this line
-
+const seatRoutes = require('./seatRoutes');
 const router = express.Router();
 
 // API info

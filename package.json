@@ -1,7 +1,7 @@
 {
   "name": "evently-backend",
-  "version": "1.0.0",
-  "description": "Event booking backend system",
+  "version": "1.1.0",
+  "description": "Event booking backend system with seat selection, QR tickets, real-time analytics",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -32,6 +32,7 @@
     "winston": "^3.11.0"
   },
   "devDependencies": {
-    "nodemon": "^3.0.2"
+    "nodemon": "^3.0.2",
+    "jest": "^29.7.0"
   }
 }
