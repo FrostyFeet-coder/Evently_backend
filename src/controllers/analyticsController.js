@@ -187,7 +187,7 @@ const getEventAnalytics = async (req, res, next) => {
         COALESCE(SUM(b."totalAmount"), 0)::float as revenue,
             (COUNT(b.id)::float / e.capacity * 100) as "utilizationPercent"
       FROM "Events" e
-      LEFT JOIN"bookings" b ON e.id = b."eventId" AND b.status IN ('PENDING', 'CONFIRMED')
+      LEFT JOIN"bookings" b ON e.id = b."eventId" AND b.status IN ('PAYMENT_PENDING', 'CONFIRMED')
       GROUP BY e.id, e.name, e.venue, e."dateTime", e.capacity, e."availableSeats", e.price, e.status
       ORDER BY "totalBookings" DESC
       LIMIT 20
