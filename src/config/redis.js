@@ -71,12 +71,13 @@ const lock = {
 
   async release(lockKey, lockValue) {
     const script = `
-      if redis.call("GET", KEYS) == ARGV then
-        return redis.call("DEL", KEYS)
+      if redis.call("GET", KEYS[1]) == ARGV[1] then
+        return redis.call("DEL", KEYS[1])
       else
         return 0
       end
     `;
+
     
     try {
       const result = await redis.eval(script, 1, lockKey, lockValue);

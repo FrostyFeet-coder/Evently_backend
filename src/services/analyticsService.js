@@ -9,6 +9,10 @@ class AnalyticsService {
     this.clients = new Set();
     this.broadcastInterval = null;
     this.startBroadcasting();
+    if (process.env.NODE_ENV !== 'test') {
+      this.startBroadcasting();
+    }
+
   }
 
   // Start broadcasting live stats every 10 seconds
@@ -25,6 +29,14 @@ class AnalyticsService {
       }
     }, 10000); // 10 seconds
   }
+
+  stopBroadcasting() {
+    if (this.broadcastInterval) {
+      clearInterval(this.broadcastInterval);
+      this.broadcastInterval = null;
+    }
+  }
+
 
   async broadcastLiveStats() {
     try {
